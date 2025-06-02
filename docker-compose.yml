@@ -1,0 +1,20 @@
+services:
+  web:
+    build:
+      context: .
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONUNBUFFERED: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    networks:
+      - network_buff
+    env_file:
+      - ./.env
+    restart: unless-stopped
+
+networks:
+  network_buff:
+    driver: bridge
